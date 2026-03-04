@@ -1,64 +1,42 @@
-# MCDA 5512 – Maven Assignment
+# Java Maven String Processor
 
-## Overview
-A Java Maven project that takes a string input from the user, **capitalizes** it, and generates its **MD5 hex hash**.
-
-Built as part of the MCDA 5512 coursework to demonstrate Maven project setup, dependency management, JUnit 5 testing, and packaging.
+A lightweight Java utility that capitalizes strings and generates MD5 hashes, built with Maven and fully tested with JUnit 5.
 
 ---
 
-## Features
-- Accepts a lowercase string from the user
-- Capitalizes the first letter using **Apache Commons Lang3**
-- Generates MD5 hex hash using **Apache Commons Codec**
-- Two JUnit 5 unit tests (capitalize + MD5)
-- Packaged as a standalone fat jar using **maven-shade-plugin**
+## What it does
 
----
+- Takes a string input from the user
+- Capitalizes the first letter
+- Generates the MD5 hex hash of the result
+- Runs as a standalone executable jar
 
-## Project Structure
-```
-MavenAssignment/
-├── src/
-│   ├── main/java/com/smu/mscda/
-│   │   └── MainApp.java          # Main application logic
-│   └── test/java/com/smu/mscda/
-│       └── MainAppTest.java      # JUnit 5 tests
-└── pom.xml                       # Maven build config
-```
+## Tech Stack
 
----
+- **Java 17**
+- **Maven** — build & dependency management
+- **Apache Commons Lang3** — string utilities
+- **Apache Commons Codec** — MD5 hashing
+- **JUnit 5** — unit testing
+- **maven-shade-plugin** — fat jar packaging
 
-## Maven Dependencies
-| Dependency | Purpose |
-|---|---|
-| `commons-lang3` | `StringUtils.capitalize()` |
-| `commons-codec` | `DigestUtils.md5Hex()` |
-| `junit-jupiter-api` | JUnit 5 test annotations |
-| `junit-jupiter-engine` | JUnit 5 test runtime |
+## Getting Started
 
----
+### Prerequisites
+- Java 17+
+- Maven 3.x
 
-## How to Build & Run
-
-### Build (compile + test + package)
+### Build
 ```bash
 mvn clean package
 ```
 
-### Run the program
-```bash
-java -cp target/MavenAssingment-1.0-SNAPSHOT.jar com.smu.mscda.MainApp
-```
-
-### Run as standalone jar (Bonus)
+### Run
 ```bash
 java -jar target/MavenAssingment-1.0-SNAPSHOT.jar
 ```
 
----
-
-## Expected Output
+### Example
 ```
 This program will capitalize the input string and generate MD5 hex!
 Enter a string: smu
@@ -67,17 +45,16 @@ Enter a string: smu
  MD5 Hex is: 6850c0ee0db4626bbdda5660167f0d4c
 ```
 
----
+## Tests
 
-## Test Results
+```bash
+mvn test
+```
 ```
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 ```
-- `testCapitalizeString` — verifies `"smu"` → `"Smu"`
-- `testGenerateMD5` — verifies MD5 of `"Smu"` == `6850c0ee0db4626bbdda5660167f0d4c`
 
----
-
-**Student ID:** A00494129  
-**Course:** MCDA 5512 – Cloud and Platform Computing 2  
-**Due:** March 8, 2026
+| Test | Description |
+|---|---|
+| `testCapitalizeString` | Verifies first-letter capitalization |
+| `testGenerateMD5` | Verifies MD5 hex output against known hash |
